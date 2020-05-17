@@ -1,5 +1,7 @@
 # Assignment2App
 
+For assignment 2 in the YTSOP0100 course.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
 
 ## Development server
