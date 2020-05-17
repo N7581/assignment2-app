@@ -41,7 +41,7 @@ export class ProductEditComponent implements OnInit {
 
   getProduct(id: any) {
     this.api.getProduct(id).subscribe((data: any) => {
-      this._id = data._id;
+      this._id = data.id;
       this.productForm.setValue({
         prod_name: data.prod_name,
         prod_desc: data.prod_desc,
@@ -54,7 +54,7 @@ export class ProductEditComponent implements OnInit {
     this.isLoadingResults = true;
     this.api.updateProduct(this._id, this.productForm.value)
       .subscribe((res: any) => {
-          const id = res._id;
+          const id = res.id;
           this.isLoadingResults = false;
           this.router.navigate(['/product-details', id]);
         }, (err: any) => {

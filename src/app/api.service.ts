@@ -5,12 +5,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { Product } from './product';
 
 const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Authorization',
-  })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 //const apiUrl = "/api/v1/products";
 const apiUrl = "http://localhost:3000/products";
@@ -50,6 +45,7 @@ export class ApiService {
   }
   
   addProduct(product: Product): Observable<Product> {
+    product.updated_at = new Date();
     return this.http.post<Product>(apiUrl, product, httpOptions).pipe(
       tap((prod: Product) => console.log(`added product w/ id=${product._id}`)),
       catchError(this.handleError<Product>('addProduct'))
@@ -57,6 +53,7 @@ export class ApiService {
   }
   
   updateProduct(id: any, product: Product): Observable<any> {
+    product.updated_at = new Date();
     const url = `${apiUrl}/${id}`;
     return this.http.put(url, product, httpOptions).pipe(
       tap(_ => console.log(`updated product id=${id}`)),

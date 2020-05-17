@@ -41,7 +41,7 @@ export class ProductAddComponent implements OnInit {
     this.isLoadingResults = true;
     this.api.addProduct(this.productForm.value)
       .subscribe((res: any) => {
-          const id = res._id;
+          const id = res.id;
           this.isLoadingResults = false;
           this.router.navigate(['/product-details', id]);
         }, (err: any) => {

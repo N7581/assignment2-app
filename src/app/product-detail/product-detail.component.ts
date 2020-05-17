@@ -22,8 +22,9 @@ export class ProductDetailComponent implements OnInit {
   getProductDetails(id: any) {
     this.api.getProduct(id)
       .subscribe((data: any) => {
+        var tmpId = data.id;
         this.product = data;
-        console.log(this.product);
+        this.product._id = tmpId;
         this.isLoadingResults = false;
       });
   }

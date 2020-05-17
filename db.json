@@ -1,10 +1,18 @@
 {
   "products": [
     {
-      "prod_name": "Maito",
-      "prod_desc": "Sininen",
+      "prod_name": "Bread",
+      "prod_desc": "Wheat",
+      "prod_price": "4",
+      "updated_at": "2020-05-17T15:40:38.589Z",
+      "id": 2
+    },
+    {
+      "prod_name": "Milk",
+      "prod_desc": "Blue",
       "prod_price": "2",
-      "id": 1
+      "updated_at": "2020-05-17T15:40:48.112Z",
+      "id": 3
     }
   ]
 }
