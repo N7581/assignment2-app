@@ -5,9 +5,15 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { Product } from './product';
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'Authorization',
+  })
 };
-const apiUrl = "/api/v1/products";
+//const apiUrl = "/api/v1/products";
+const apiUrl = "http://localhost:3000/products";
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +34,7 @@ export class ApiService {
   }
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(apiUrl)
+    return this.http.get<Product[]>(apiUrl, httpOptions)
       .pipe(
         tap(product => console.log('fetched products')),
         catchError(this.handleError('getProducts', []))
@@ -37,7 +43,7 @@ export class ApiService {
   
   getProduct(id: number): Observable<Product> {
     const url = `${apiUrl}/${id}`;
-    return this.http.get<Product>(url).pipe(
+    return this.http.get<Product>(url, httpOptions).pipe(
       tap(_ => console.log(`fetched product id=${id}`)),
       catchError(this.handleError<Product>(`getProduct id=${id}`))
     );
